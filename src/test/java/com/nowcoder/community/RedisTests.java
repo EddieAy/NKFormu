@@ -22,6 +22,18 @@ public class RedisTests {
     @Autowired
     private RedisTemplate redisTemplate;
 
+
+    @Test
+    public void t1(){
+        redisTemplate.opsForValue().set("zeus1",11451414);
+        System.out.println(redisTemplate.opsForValue().get("zeus1"));
+        String hashKey = "shop";
+        String valueKey = "product";
+        String valueValue = "iphone";
+        redisTemplate.opsForHash().put(hashKey,valueKey,valueValue);
+        System.out.println(redisTemplate.opsForHash().get(hashKey,valueKey));
+
+    }
     @Test
     public void testStrings() {
         String redisKey = "test:count";
@@ -31,6 +43,9 @@ public class RedisTests {
         System.out.println(redisTemplate.opsForValue().get(redisKey));
         System.out.println(redisTemplate.opsForValue().increment(redisKey));
         System.out.println(redisTemplate.opsForValue().decrement(redisKey));
+
+
+
     }
 
     @Test
